@@ -31,6 +31,7 @@
     "eslint": "eslint --fix --color --ext .ts packages/**",
     "prettier": "prettier --write packages/**/**.ts",
     "lint-staged": "lint-staged",
+    "deploy": "bash deploy.sh",
     "test": "jest",
     "test-cov": "jest --coverage",
     "watch:module": "cross-env NODE_ENV=MODULE rollup -cw",
