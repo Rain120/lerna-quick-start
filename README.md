@@ -96,7 +96,26 @@ mv lerna-quick-start your-name
 
   **Note: 以上 3 种方式都是将 `packages/src/index.ts` 作为入口，打包所有 `package`。**
 
-  `BUILD_PLAN="module1;module2" npm run build:all`: 制定`package`包进行打包。
+  `BUILD_PKG="module1;module2" npm run build:all`: 指定`package`包中的`module1`, `module2`进行打包。
+
+  `BUILD="plugins" npm run build:all`: 指定将整个`plugins`包进行打包。
+
+  ```
+    ├── packages
+    │   └── module1
+    │   └── module2
+    │   └── module3 // ...
+    ├── plugins
+    │   ├── font-color
+    │   ├── hr
+    │   └── template
+  ```
+
+  > BUILD: 指定文件夹中所有的包打包
+
+  > BUILD_PKG: 指定某个包打包(据名), 注意: 据名时, 请务必保证指定的 **BUILD** key 中含有此包。
+
+  > Note: 多个 PKG 以 **;** 分隔; 支持指定 `plugins -> hr`打包, eg: BUILD_PKG='hr;' BUILD='plugins;' npm run build:all.
 
 ### 👨‍🏭 Author
 

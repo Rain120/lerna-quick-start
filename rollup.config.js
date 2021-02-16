@@ -7,25 +7,36 @@ import replace from '@rollup/plugin-replace';
 import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
 import camelCase from 'camelcase';
+const ALL = '*';
 
-let { NODE_ENV, BUILD_PATH = '*' } = process.env;
+let { NODE_ENV, BUILD = ALL, BUILD_PKG = ALL } = process.env;
 function toGlobalName(pkgName) {
   return camelCase(pkgName);
 }
 
-BUILD_PATH = BUILD_PATH.split(';').filter(Boolean);
+BUILD_PKG = BUILD_PKG.split(';').filter(Boolean);
+BUILD = BUILD.split(';').filter(Boolean);
 
-const pkgsRoot = path.join(__dirname, 'packages');
-const pkgs = fs
-  .readdirSync(pkgsRoot)
-  .filter(dir => BUILD_PATH.includes('*') || BUILD_PATH.includes(dir))
-  .map(dir => path.join(pkgsRoot, dir))
-  .map(location => {
-    return {
-      location,
-      pkgJson: require(path.resolve(location, 'package.json')),
-    };
-  });
+let pkgs = [];
+
+const paths = ['packages', 'plugins'].filter(_ => BUILD.includes(ALL) || BUILD.includes(_));
+
+paths.forEach(pkgPath => {
+  const pkgsRoot = path.join(__dirname, pkgPath);
+  const currentFilePath = fs.readdirSync(pkgsRoot);
+  if (currentFilePath.length) {
+    const filePath = currentFilePath
+      .filter(dir => BUILD_PKG.includes(ALL) || BUILD_PKG.includes(dir))
+      .map(dir => path.join(pkgsRoot, dir))
+      .map(location => {
+        return {
+          location,
+          pkgJson: require(path.resolve(location, 'package.json')),
+        };
+      });
+    pkgs = [...pkgs, ...filePath];
+  }
+});
 
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
