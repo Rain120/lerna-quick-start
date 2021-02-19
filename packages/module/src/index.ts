@@ -1,8 +1,8 @@
 import colorNamed from '@tinyfe/color-keywords';
 export interface IOptions {
-  [key: string]: any;
+  test: boolean;
 }
 
-export default function getSomethings(root?: string, options?: IOptions | undefined) {
-  console.log(root, options, colorNamed);
+export default function getSomethings(options: IOptions) {
+  console.log(options, colorNamed);
 }

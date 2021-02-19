@@ -7,6 +7,8 @@ import replace from '@rollup/plugin-replace';
 import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
 import camelCase from 'camelcase';
+import typescript from 'rollup-plugin-typescript2';
+
 const ALL = '*';
 
 let { NODE_ENV, BUILD = ALL, BUILD_PKG = ALL } = process.env;
@@ -17,9 +19,11 @@ function toGlobalName(pkgName) {
 BUILD_PKG = BUILD_PKG.split(';').filter(Boolean);
 BUILD = BUILD.split(';').filter(Boolean);
 
+console.log({ BUILD_PKG, BUILD });
+
 let pkgs = [];
 
-const paths = ['packages', 'plugins'].filter(_ => BUILD.includes(ALL) || BUILD.includes(_));
+const paths = ['packages'].filter(_ => BUILD.includes(ALL) || BUILD.includes(_));
 
 paths.forEach(pkgPath => {
   const pkgsRoot = path.join(__dirname, pkgPath);
@@ -65,10 +69,14 @@ function config({ location, pkgJson }) {
     }),
   );
 
+  const tsPlugin = typescript({
+    tsconfig: path.join(location, 'tsconfig.json'),
+  });
+
   return {
     umd: compress => {
       let file = path.join(location, 'lib', 'browser.js');
-      const plugins = [...commonPlugins];
+      const plugins = [...commonPlugins, tsPlugin];
       if (compress) {
         plugins.push(terser());
         file = path.join(location, 'lib', 'browser.min.js');
@@ -87,6 +95,7 @@ function config({ location, pkgJson }) {
             file,
             name: globalName,
             format: 'umd',
+            exports: 'named',
             sourcemap: false,
             globals,
           },
@@ -95,7 +104,7 @@ function config({ location, pkgJson }) {
       };
     },
     module: () => {
-      const plugins = [...commonPlugins];
+      const plugins = [...commonPlugins, tsPlugin];
       return {
         inlineDynamicImports: true,
         input,

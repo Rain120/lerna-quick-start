@@ -3,7 +3,7 @@
 import getSomethings from '../src';
 
 describe('module', () => {
-  test('getSomethings', () => {
-    expect(getSomethings()).toBe(undefined);
+  test('getSomethings has options', () => {
+    expect(getSomethings({ test: true })).toBe(undefined);
   });
 });
