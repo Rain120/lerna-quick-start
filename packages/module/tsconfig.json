@@ -5,7 +5,7 @@
     "noImplicitAny": false,
     "declaration": true,
     // "outDir": "./lib",
-    // "declarationDir": "./lib/@types",
+    "declarationDir": "./lib/@types",
     "typeRoots": ["./typings", "./node_modules/@types"],
     "paths": {
       "module": ["src/index.ts"]

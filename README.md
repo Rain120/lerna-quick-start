@@ -73,6 +73,10 @@ mv lerna-quick-start your-name
 
   **Important: 请务必在 `package.json` 中设置下面三个属性(这三个属性的值, 对应着打包输出 `path`)。**
 
+  ```sh
+  npm run build:js BUILD_PKG(module1) BUILD_TYPE(cjs, umd, es) BUILD(packages)
+  ```
+
   ```json
   {
     // module cjs
