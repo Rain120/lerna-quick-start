@@ -2,7 +2,7 @@
 
 import template from '../src';
 
-describe('@tinyfe/template', () => {
+describe('template', () => {
   test('test', () => {
     expect(template()).toBe(undefined);
   });

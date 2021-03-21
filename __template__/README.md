@@ -5,7 +5,7 @@
 ## Usage
 
 ```
-const template = require('template');
+import template from 'template';
 
 // TODO: DEMONSTRATE API
 ```
