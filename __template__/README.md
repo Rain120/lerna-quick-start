@@ -4,7 +4,7 @@
 
 ## Usage
 
-```
+```js
 import template from 'template';
 
 // TODO: DEMONSTRATE API

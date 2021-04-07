@@ -76,6 +76,7 @@ function config({ location, pkgJson }) {
   commonPlugins.push(
     replace({
       __buildVersion: pkgJson.version,
+      preventAssignment: true,
     }),
   );
 
