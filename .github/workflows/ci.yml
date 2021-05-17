@@ -6,8 +6,8 @@ on:
       - main
   pull_request:
     branches:
-      - '!main'
-      - 'dev**'
+      - "!main"
+      - "dev**"
 
 jobs:
   build-and-deploy:
@@ -15,8 +15,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Master
-        uses: actions/checkout@master
+      - name: Checkout Main 🛎️
+        uses: actions/checkout@v2
+        with:
+          path: main
 
       - name: Test
         run: |
@@ -30,17 +32,13 @@ jobs:
           github-token: ${{ secrets.ACCESS_TOKEN }}
           parallel: true
           path-to-lcov: ./coverage/lcov.info
-
       # - name: Coveralls Finished
       #   uses: coverallsapp/github-action@master
       #   with:
       #     github-token: ${{ secrets.ACCESS_TOKEN }}
       #     parallel-finished: true
-
-      # - name: Deploy
-      #   uses: JamesIves/github-pages-deploy-action@master
-      #   env:
-      #     ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-      #     BRANCH: gh-pages
-      #     FOLDER: docs/.vuepress/dist
-      #     BUILD_SCRIPT: npm run deploy
+      # - name: Deploy 🚀
+      #   uses: JamesIves/github-pages-deploy-action@4.1.1
+      #   with:
+      #     branch: gh-pages
+      #     folder: docs/.vuepress/dist
