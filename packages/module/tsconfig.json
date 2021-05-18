@@ -6,12 +6,9 @@
     "declaration": true,
     // "outDir": "./lib",
     "declarationDir": "./lib/@types",
-    "typeRoots": ["./typings", "./node_modules/@types"],
-    "paths": {
-      "module": ["src/index.ts"]
-    },
+    "typeRoots": ["./src/typings", "./node_modules/@types"],
+    "paths": {},
     "lib": ["es6", "es7", "DOM"]
   },
-  "files": ["src/index.ts"],
   "include": ["src/**/*", "typings/**/*"]
 }

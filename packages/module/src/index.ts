@@ -1,8 +1,6 @@
 import colorNamed from '@tinyfe/color-keywords';
-export interface IOptions {
-  test: boolean;
-}
+import { Profile } from 'src/typings';
 
-export default function getSomethings(options: IOptions) {
-  console.log(options, colorNamed);
+export default function getSomethings(options: Profile) {
+  console.log(options, colorNamed, options.name);
 }
