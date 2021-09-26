@@ -1,3 +1,7 @@
 export default function template() {
-  // TODO
+  const profile = {
+    name: 'Rain120',
+  };
+
+  console.log(profile);
 }
