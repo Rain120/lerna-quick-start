@@ -2,7 +2,7 @@
  * @Author: Rainy [https://github.com/rain120]
  * @Date: 2020-12-02 21:52:38
  * @LastEditors: Rainy
- * @LastEditTime: 2020-12-02 21:52:57
+ * @LastEditTime: 2021-09-24 17:19:22
  */
 module.exports = {
   extends: ['@commitlint/config-conventional'],
@@ -22,12 +22,11 @@ module.exports = {
         'ci',
         'chore',
         'revert',
-        'config'
-      ]
+        'config',
+      ],
     ],
     'subject-full-stop': [0, 'never'],
     'subject-case': [0, 'never'],
-    'header-max-length': [0, 'always', 150]
-  }
+    'header-max-length': [0, 'always', 130],
+  },
 };
-

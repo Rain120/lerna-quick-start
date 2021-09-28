@@ -1,7 +1,8 @@
 ### Node ###
 # Lock files
-package-lock.json
-yarn.lock
+
+lib
+es
 
 # Logs
 logs
