@@ -4,6 +4,6 @@ import getSomethings from '../src';
 
 describe('module', () => {
   test('getSomethings has options', () => {
-    expect(getSomethings({ test: true })).toBe(undefined);
+    expect(getSomethings({ name: 'Rain120' })).toBe(undefined);
   });
 });
